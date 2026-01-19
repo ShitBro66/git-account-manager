@@ -39,10 +39,37 @@ npm run electron:dev
 
 ### 4. 构建打包
 
-生成生产环境的可执行文件（Windows 下为 .exe）：
+生成生产环境的可执行文件。
 
+**Windows (默认 x64)**:
 ```bash
-npm run dist
+# 生成标准安装程序 (.exe) 和绿色免安装版 (.zip)
+# 安装程序包含完整的安装向导（选择目录、创建快捷方式）
+npm run dist:win
+# 构建 ARM64 版本
+npm run dist:win:arm64
+```
+
+**macOS**:
+```bash
+# 生成 .dmg 和 .zip
+npm run dist:mac
+# 构建 ARM64 (Apple Silicon) 版本
+npm run dist:mac:arm64
+```
+> 注意：在 Windows 上构建 macOS 应用可能无法进行代码签名和公证，生成的应用可能需要在 macOS 上允许"任何来源"才能运行。
+
+**Linux**:
+```bash
+# 生成 AppImage, .deb, .rpm
+npm run dist:linux
+# 构建 ARM64 版本
+npm run dist:linux:arm64
+```
+
+**构建所有平台**:
+```bash
+npm run dist:all
 ```
 
 > **注意**: 构建 Windows 安装包需要非管理员权限或正确配置 `winCodeSign` 环境。如果遇到网络问题导致下载构建工具失败，请配置相应的镜像源。
